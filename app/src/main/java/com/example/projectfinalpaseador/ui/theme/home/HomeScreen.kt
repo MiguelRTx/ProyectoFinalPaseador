@@ -1,4 +1,4 @@
-// ui/theme/home/HomeScreen.kt
+
 package com.example.projectfinalpaseador.ui.theme.home
 
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -58,12 +58,12 @@ fun HomeScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        // Foto de perfil del usuario con indicador de carga
+    
                         Box(
                             modifier = Modifier.size(40.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            val profile = userProfile // Variable local para smart cast
+                            val profile = userProfile 
                             when {
                                 isLoadingProfile -> {
                                     CircularProgressIndicator(
@@ -88,7 +88,6 @@ fun HomeScreen(
                             }
                         }
 
-                        // Información del usuario
                         Column {
                             Text(
                                 text = "Inicio - Paseador",
@@ -173,7 +172,7 @@ fun HomeScreen(
                                             viewModel.toggleAvailability()
                                         }
                                     } catch (e: Exception) {
-                                        // Manejar cualquier error silenciosamente
+                
                                         e.printStackTrace()
                                     }
                                 },
