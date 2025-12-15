@@ -25,28 +25,23 @@ class WalkDetailViewModel(application: Application) : AndroidViewModel(applicati
     var walk by mutableStateOf<Walk?>(null)
     var isLoading by mutableStateOf(false)
     var successMessage by mutableStateOf<String?>(null)
-
-    // Simulamos cargar el paseo (En una app real, haríamos GET /walks/{id} o lo pasaríamos por argumento)
-    // Para simplificar, usaremos el objeto Walk que pasamos desde la lista.
     fun setWalkData(w: Walk) {
         walk = w
     }
 
-    // PUNTO 8: Iniciar
     fun startWalk() {
         if (walk == null) return
         viewModelScope.launch {
             try {
                 val response = apiService.startWalk(getAuthHeader(), walk!!.id)
                 if (response.isSuccessful) {
-                    walk = walk!!.copy(status = "walking") // Actualizamos UI localmente
+                    walk = walk!!.copy(status = "walking") 
                     successMessage = "¡Paseo Iniciado!"
                 }
             } catch (e: Exception) { e.printStackTrace() }
         }
     }
 
-    // PUNTO 11: Finalizar
     fun endWalk() {
         if (walk == null) return
         viewModelScope.launch {
@@ -60,7 +55,6 @@ class WalkDetailViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    // PUNTO 10: Subir Foto
     fun uploadEvidence(file: File) {
         if (walk == null) return
         viewModelScope.launch {
