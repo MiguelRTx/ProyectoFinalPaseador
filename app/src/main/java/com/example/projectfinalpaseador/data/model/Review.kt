@@ -10,11 +10,8 @@ data class Review(
     @SerializedName("created_at") val createdAt: String? = null,
     @SerializedName("updated_at") val updatedAt: String? = null,
 
-    // Información del usuario que dejó la review (dueño de la mascota)
     @SerializedName("user_id") val userId: Int? = null,
     val user: SimpleUser? = null,
-
-    // Información básica del paseo (evitamos referencia circular completa)
     @SerializedName("walk") val walkInfo: SimpleWalk? = null
 ) {
     fun getCommentSafe(): String = comment ?: "Sin comentario"
@@ -28,14 +25,12 @@ data class Review(
     fun getWalkLinkText(): String = "Ver paseo #${walkId}"
 }
 
-// Modelo simplificado del usuario para evitar dependencias circulares
 data class SimpleUser(
     val id: Int = 0,
     val name: String? = null,
     val email: String? = null
 )
 
-// Modelo simplificado del paseo para reviews
 data class SimpleWalk(
     val id: Int = 0,
     @SerializedName("pet_name") val petName: String? = null,
