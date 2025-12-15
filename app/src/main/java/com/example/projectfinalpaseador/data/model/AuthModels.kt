@@ -1,6 +1,5 @@
-// data/model/AuthModels.kt
-package com.example.projectfinalpaseador.data.model
 
+package com.example.projectfinalpaseador.data.model
 import com.google.gson.annotations.SerializedName
 
 data class LoginRequest(
@@ -47,13 +46,8 @@ data class WalkerProfile(
     fun getPhotoUrl(baseUrl: String = "https://apimascotas.jmacboy.com"): String? {
         return photo?.takeIf { it.isNotBlank() }?.let { photoPath ->
             when {
-                // Ya es una URL completa
                 photoPath.startsWith("http") -> photoPath
-
-                // Ruta relativa que empieza con /
                 photoPath.startsWith("/") -> "${baseUrl.removeSuffix("/")}$photoPath"
-
-                // Ruta relativa sin /
                 else -> "${baseUrl.removeSuffix("/")}/$photoPath"
             }
         }
