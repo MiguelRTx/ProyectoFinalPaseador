@@ -42,7 +42,6 @@ class ReviewsViewModel(application: Application) : AndroidViewModel(application)
                 if (response.isSuccessful) {
                     val reviewsList = response.body() ?: emptyList()
 
-                    // Debug logging - imprimir la estructura de datos recibida
                     reviewsList.forEach { review ->
                         println("Review ID: ${review.id}")
                         println("Rating: ${review.rating}")
