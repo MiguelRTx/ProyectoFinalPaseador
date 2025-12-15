@@ -45,8 +45,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.isSuccessful && response.body() != null) {
                     val token = response.body()!!.token
                     tokenRepository.saveToken(token)
-
-                    // Guardar email por lo menos, ya que es lo que sabemos del login
                     tokenRepository.saveUserInfo(null, email, null)
 
                     loginSuccess = true
@@ -83,7 +81,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
                 val response = apiService.register(emailBody, passBody, nameBody, priceHourBody, photoPart)
                 if (response.isSuccessful && response.body() != null) {
-                    // Registro exitoso - guardar información básica para futuros usos
                     tokenRepository.saveUserInfo(name, email, null)
                     registrationSuccess = true
                 } else {
