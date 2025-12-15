@@ -1,4 +1,4 @@
-// ui/theme/walks/WalksViewModel.kt
+
 package com.example.projectfinalpaseador.ui.theme.walks
 
 import android.app.Application
