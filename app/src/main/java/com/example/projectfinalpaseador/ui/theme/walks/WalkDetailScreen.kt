@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-// CAMBIO: Usamos 'Add' (Signo +) porque 'CameraAlt' requiere librería externa
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -107,7 +106,7 @@ fun WalkDetailScreen(
                     onClick = { launcher.launch("image/*") },
                     modifier = Modifier.fillMaxWidth().height(50.dp)
                 ) {
-                    // AQUÍ ESTÁ EL CAMBIO DE ÍCONO
+    
                     Icon(Icons.Default.Add, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("SUBIR EVIDENCIA / FOTO")
