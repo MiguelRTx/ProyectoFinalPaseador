@@ -1,4 +1,3 @@
-// data/api/ApiService.kt
 package com.example.projectfinalpaseador.data.api
 
 import com.example.projectfinalpaseador.data.model.*
@@ -8,8 +7,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
-
-    // ============ AUTH ============
     @POST("auth/walkerlogin")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
@@ -23,21 +20,18 @@ interface ApiService {
         @Part photo: MultipartBody.Part?
     ): Response<RegisterResponse>
 
-    // ============ AVAILABILITY ============
     @POST("walkers/availability")
     suspend fun setAvailability(
         @Header("Authorization") token: String,
         @Body request: AvailabilityRequest
     ): Response<Unit>
 
-    // ============ LOCATION ============
     @POST("walkers/location")
     suspend fun sendLocation(
         @Header("Authorization") token: String,
         @Body request: LocationRequest
     ): Response<Unit>
-
-    // ============ WALKS ============
+    
     @GET("walks/pending")
     suspend fun getPendingWalks(
         @Header("Authorization") token: String
@@ -90,30 +84,24 @@ interface ApiService {
         @Path("id") walkId: Int,
         @Part photo: MultipartBody.Part
     ): Response<Unit>
-
-    // ============ WALKER PHOTO ============
     @Multipart
     @POST("walkers/photo")
     suspend fun uploadWalkerPhoto(
         @Header("Authorization") token: String,
         @Part photo: MultipartBody.Part
     ): Response<Unit>
-
-    // ============ WALK PHOTOS ============
+    
     @GET("walks/{id}/photos")
     suspend fun getWalkPhotos(
         @Header("Authorization") token: String,
         @Path("id") walkId: Int
     ): Response<List<WalkPhoto>>
 
-    // ============ USER INFO ============
     @GET("me")
     suspend fun getCurrentUser(
         @Header("Authorization") token: String
     ): Response<WalkerProfile>
 
-    // ============ REVIEWS ============
-    // Nota: Este endpoint no está en el Postman, pero es necesario para mostrar reviews del paseador
     @GET("reviews")
     suspend fun getReviews(
         @Header("Authorization") token: String
