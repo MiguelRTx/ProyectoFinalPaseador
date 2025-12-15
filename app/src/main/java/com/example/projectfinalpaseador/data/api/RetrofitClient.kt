@@ -21,7 +21,6 @@ object RetrofitClient {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    // ApiService sin contexto para auth básica
     val apiService: ApiService by lazy {
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -37,7 +36,6 @@ object RetrofitClient {
             .create(ApiService::class.java)
     }
 
-    // ApiService con contexto para requests autenticadas
     fun getApiService(context: Context): ApiService {
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
