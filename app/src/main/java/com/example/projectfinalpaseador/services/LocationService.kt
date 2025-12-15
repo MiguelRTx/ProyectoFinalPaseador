@@ -30,7 +30,7 @@ class LocationService : Service() {
     companion object {
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "location_service_channel"
-        private const val LOCATION_UPDATE_INTERVAL = 3 * 60 * 1000L // 3 minutos
+        private const val LOCATION_UPDATE_INTERVAL = 3 * 60 * 1000L 
     }
 
     override fun onCreate() {
@@ -56,12 +56,10 @@ class LocationService : Service() {
                 "START_LOCATION_UPDATES" -> startLocationUpdates()
                 "STOP_LOCATION_UPDATES" -> stopLocationUpdates()
                 else -> {
-                    // Acción no reconocida, detener servicio
                     stopSelf()
                 }
             }
         } catch (e: Exception) {
-            // Error al procesar comando, detener servicio
             stopSelf()
         }
         return START_STICKY
@@ -80,7 +78,6 @@ class LocationService : Service() {
                 priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
             }
 
-            // Verificar permisos antes de solicitar ubicación
             if (android.content.pm.PackageManager.PERMISSION_GRANTED ==
                 androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
@@ -90,11 +87,9 @@ class LocationService : Service() {
                     Looper.getMainLooper()
                 )
             } else {
-                // Sin permisos, detener servicio
                 stopSelf()
             }
         } catch (e: Exception) {
-            // Error al iniciar actualizaciones de ubicación
             stopSelf()
         }
     }
@@ -118,14 +113,12 @@ class LocationService : Service() {
                     val authHeader = "Bearer $token"
                     val response = RetrofitClient.getApiService(this@LocationService)
                         .sendLocation(authHeader, locationRequest)
-
-                    // Si hay error de autenticación, detener el servicio
                     if (response.code() == 401) {
                         stopLocationUpdates()
                     }
                 }
             } catch (e: Exception) {
-                // Log error but continue service - network issues are temporary
+
                 e.printStackTrace()
             }
         }
