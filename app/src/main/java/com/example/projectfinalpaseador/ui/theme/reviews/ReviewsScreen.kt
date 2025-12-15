@@ -133,7 +133,7 @@ fun ReviewCard(review: Review) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            // Header with rating and date
+    
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -167,7 +167,7 @@ fun ReviewCard(review: Review) {
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Pet and client info
+    
             Text(
                 text = "Paseo con ${review.getPetNameSafe()}",
                 fontWeight = FontWeight.Medium,
@@ -193,7 +193,7 @@ fun ReviewCard(review: Review) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Enlace al paseo (Requisito 13)
+    
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -201,8 +201,7 @@ fun ReviewCard(review: Review) {
             ) {
                 TextButton(
                     onClick = {
-                        // TODO: Navegar al detalle del paseo
-                        // navController.navigate("walkDetail/${review.walkId}")
+                
                     }
                 ) {
                     Text(
@@ -213,7 +212,6 @@ fun ReviewCard(review: Review) {
                     )
                 }
 
-                // Información adicional del paseo
                 Text(
                     text = "Paseo #${review.walkId}",
                     fontSize = 10.sp,
